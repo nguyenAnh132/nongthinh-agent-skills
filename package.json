@@ -1,0 +1,28 @@
+{
+  "name": "nongthinh-agent-skills",
+  "version": "1.0.0",
+  "description": "Centralized Agent Skills Management for **Nong Thinh – Agri System**.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "skills:validate": "node scripts/validate-skills.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nguyenAnh132/nongthinh-agent-skills.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/nguyenAnh132/nongthinh-agent-skills/issues"
+  },
+  "homepage": "https://github.com/nguyenAnh132/nongthinh-agent-skills#readme",
+  "devDependencies": {
+    "yaml": "^2.9.1"
+  }
+}
