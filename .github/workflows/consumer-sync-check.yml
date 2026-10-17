@@ -1,0 +1,45 @@
+name: Consumer Agent Skills Check
+
+on:
+  workflow_call:
+    inputs:
+      tool-ref:
+        description: Immutable commit SHA of nongthinh-agent-skills used as the CLI version
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out consumer repository
+        uses: actions/checkout@v7
+        with:
+          path: consumer
+          persist-credentials: false
+
+      - name: Check out synchronization tool
+        uses: actions/checkout@v7
+        with:
+          repository: nguyenAnh132/nongthinh-agent-skills
+          ref: ${{ inputs.tool-ref }}
+          path: tool
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: tool/package-lock.json
+
+      - name: Install tool dependencies
+        run: npm ci --prefix tool
+
+      - name: Verify synchronized skills
+        run: node tool/bin/agent-skills.mjs sync --root consumer --check

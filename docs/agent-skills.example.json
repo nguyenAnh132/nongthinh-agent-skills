@@ -1,0 +1,17 @@
+{
+    "$schema": "https://raw.githubusercontent.com/nguyenAnh132/nongthinh-agent-skills/master/schemas/agent-skills.schema.json",
+    "schemaVersion": 1,
+    "source": {
+        "repository": "nguyenAnh132/nongthinh-agent-skills",
+        "ref": "01c4a68a43eefca10e76d7f8c9f59bac68924637"
+    },
+    "skills": [
+        "clean-code",
+        "code-review"
+    ],
+    "agents": [
+        "codex",
+        "claude-code",
+        "antigravity"
+    ]
+}

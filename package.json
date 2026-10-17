@@ -1,14 +1,20 @@
 {
   "name": "nongthinh-agent-skills",
   "version": "1.0.0",
-  "description": "Centralized Agent Skills Management for **Nong Thinh – Agri System**.",
-  "main": "index.js",
+  "description": "Centralized Agent Skills Management for Nong Thinh - Agri System.",
+  "private": true,
+  "bin": {
+    "nongthinh-agent-skills": "bin/agent-skills.mjs"
+  },
   "directories": {
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "skills:validate": "node scripts/validate-skills.mjs"
+    "test": "node --test test/*.test.mjs",
+    "skills:validate": "node scripts/validate-skills.mjs",
+    "config:validate": "node scripts/validate-config.mjs",
+    "sync": "node bin/agent-skills.mjs sync",
+    "validate": "npm run skills:validate && npm run config:validate && npm test"
   },
   "repository": {
     "type": "git",
@@ -18,11 +24,16 @@
   "author": "",
   "license": "ISC",
   "type": "commonjs",
+  "engines": {
+    "node": ">=20"
+  },
   "bugs": {
     "url": "https://github.com/nguyenAnh132/nongthinh-agent-skills/issues"
   },
   "homepage": "https://github.com/nguyenAnh132/nongthinh-agent-skills#readme",
-  "devDependencies": {
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
     "yaml": "^2.9.1"
   }
 }

@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/nguyenAnh132/nongthinh-agent-skills/master/schemas/agent-skills.schema.json",
+  "title": "Nong Thinh Agent Skills Configuration",
+  "description": "Nong Thinh consumer configuration for selecting centrally managed Agent Skills.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "source",
+    "skills",
+    "agents"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "format": "uri-reference",
+      "minLength": 1,
+      "description": "Optional URI or relative path to this JSON Schema."
+    },
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1,
+      "description": "Configuration format version."
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository",
+        "ref"
+      ],
+      "properties": {
+        "repository": {
+          "type": "string",
+          "const": "nguyenAnh132/nongthinh-agent-skills"
+        },
+        "ref": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 255,
+          "pattern": "^(?!-)(?!.*(?:\\.\\.|//|@\\{|[~^:?*\\[\\]\\\\\\s]))(?!.*(?:/\\.|\\.lock(?:/|$)))(?!.*[/.]$)[A-Za-z0-9][A-Za-z0-9._/-]*$",
+          "description": "Git branch, tag, or full 40-character commit SHA. Commit SHAs are recommended."
+        }
+      }
+    },
+    "skills": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 64,
+        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      }
+    },
+    "agents": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "codex",
+          "claude-code",
+          "antigravity"
+        ]
+      }
+    }
+  }
+}
